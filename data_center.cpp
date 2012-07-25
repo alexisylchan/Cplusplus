@@ -27,7 +27,6 @@ bool DataInstance::print_copy_instructions(int id, int num_centers)
 		{
 			if ((*center_iterator) == i)
 				data_in_center = true;
-			
 		}
 		if (!data_in_center)
 		{
@@ -79,7 +78,7 @@ int main(int argc, char* argv[])
 
 	for (data_iterator = data_instances.begin(); data_iterator != data_instances.end(); ++data_iterator)
 	{
-		copy_instr_issued_ever = data_iterator->second->print_copy_instructions(data_iterator->first,num_data_centers);		
+	copy_instr_issued_ever = data_iterator->second->print_copy_instructions(data_iterator->first,num_data_centers)? true : copy_instr_issued_ever;		
 	}
 	for (data_iterator = data_instances.begin(); data_iterator != data_instances.end(); ++data_iterator)
 	{
@@ -90,6 +89,7 @@ int main(int argc, char* argv[])
 	{
 		std::cout<<std::endl;
 	}
-	std::cout<<"Done"<<std::endl;
+	std::cout<<"Done"<<std::endl;	
+
 
 }
