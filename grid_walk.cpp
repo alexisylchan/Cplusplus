@@ -33,7 +33,7 @@ public:
 
 class Grid
 {	 
-	boost::unordered_map<GridSpace, int> grid_map;
+	boost::unordered_map<GridSpace_S, int> grid_map;
 public: 
 	Grid(){};
 	int traverse_grid();
@@ -70,14 +70,33 @@ int Grid::recurse_traverse_grid(int x, int y, int direction)
 	int sum_x_y = sum_of_digit(x) + sum_of_digit(y);   
 	if ( sum_x_y > 19) return 0;	
 
-	grid_map.insert(std::make_pair<GridSpace,int>(GridSpace::create(x,y,true),sum_x_y));
-	int sum1, sum2, sum3, sum4;
-	sum1 = sum2 = sum3 = sum4 = 0;
-	
-	sum1 = recurse_traverse_grid(x+1,y,0);
+	grid_map.insert(std::make_pair<GridSpace_S,int>(GridSpace::create(x,y,true),sum_x_y));
+	int sum1, sum2, sum3, sum4, sum_x_y_k, sum_x_y_l;
+	sum1 = sum2 = sum3 = sum4 = sum_x_y_k = sum_x_y_l = 0;
+	for (int l = 0; ; l++)
+	{ 
+		for (int k = 0; ; k++)
+		{ 
+
+			sum_x_y_k = sum_of_digit(k + 1) + sum_of_digit(l);   
+			sum_x_y_l = sum_of_digit(k) + sum_of_digit(l+1);   
+			if ((sum_x_y_k > 19) && ( sum_x_y_l > 19)) break;
+			if (( sum_x_y_k <= 19) && grid_map.find(GridSpace::create(k + 1,l,false)) != grid_map.end())
+			{ 
+				grid_map.insert(std::make_pair<GridSpace_S,int>(GridSpace::create(k + 1,l,true),sum_x_y_k));
+				sum2 += 2; 
+			} 
+			if ((sum_x_y_l <= 19)&& grid_map.find(GridSpace::create(k,l+1,false)) != grid_map.end())
+			{ 
+				grid_map.insert(std::make_pair<GridSpace_S,int>(GridSpace::create(k,l+1,true),sum_x_y_l));
+				sum2 += 2; 
+			}	
+		}
+	}
+	/*sum1 = recurse_traverse_grid(x+1,y,0);
 	sum2 = recurse_traverse_grid(x-1,y,0);
 	sum3 = recurse_traverse_grid(x,y+1,0);
-	sum4 = recurse_traverse_grid(x,y-1,0);
+	sum4 = recurse_traverse_grid(x,y-1,0);*/
 	return 1 + sum1 + sum2 + sum3 + sum4;
 	 
 }
