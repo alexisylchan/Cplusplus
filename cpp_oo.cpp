@@ -1,9 +1,11 @@
 #include <iostream>
 #include <vector>
 #include <string>
+#include <memory>
 
 using std::ostream;
 using std::vector;
+using std::tr1::shared_ptr;
 
 // type : phone extension , age , house_number
 // phone extension : id, area code , seven digit number
@@ -53,11 +55,11 @@ protected:
 	}
 }; 
 
-void showData(vector<Data>& data_vec)
+void showData(vector<shared_ptr<Data> >& data_vec)
 {
     std::cout << "\n";
     for ( int i=0; i < data_vec.size(); ++i ) {
-        std::cout << "Element index number " << i << " is a " <<data_vec[i];
+		std::cout << "Element index number " << i << " is a " << *data_vec[i].get();
     }
 }
  
@@ -71,12 +73,12 @@ int holdCommandWindow()
 
 int main (int argc, char* argv[]) {
 	
-	vector<Data> data_vec;
-	data_vec.push_back(PhoneExtension(313, 4567892));
-	data_vec.push_back(PhoneExtension(800, 3334455));
-	data_vec.push_back(Age(39));
-	data_vec.push_back(Age(21));
-	data_vec.push_back(HouseNumber(44842));
+	vector<shared_ptr<Data> > data_vec;
+	data_vec.push_back(shared_ptr<Data>(new PhoneExtension(313, 4567892)));
+	data_vec.push_back(shared_ptr<Data>(new PhoneExtension(800, 3334455)));
+	data_vec.push_back(shared_ptr<Data>(new Age(39)));
+	data_vec.push_back(shared_ptr<Data>(new Age(21)));
+	data_vec.push_back(shared_ptr<Data>(new HouseNumber(44842)));
 	showData(data_vec);
 	holdCommandWindow();
 }
