@@ -5,6 +5,7 @@ class PhoneExtension : public Data {
 	unsigned long sevenDigitNumber;
 public:
 	PhoneExtension(unsigned int ac, unsigned long sdn);
+	~PhoneExtension();
 protected:
 	virtual void print (ostream& ostr) const;	
 };

@@ -8,6 +8,7 @@ using std::ostream;
 class Data {
 public:
 	friend ostream& operator <<(ostream& ostr, const Data& other);
+	virtual ~Data();
 protected:
 	virtual void print(ostream& ostr) const = 0;
 };

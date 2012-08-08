@@ -1,7 +1,7 @@
 #include <iostream>
 #include <vector>
 #include <string>
-#include <tr1/memory>
+#include <memory>
 #include "PhoneExtension.h"
 #include "HouseNumber.h"
 #include "Age.h"
@@ -36,5 +36,6 @@ int main (int argc, char* argv[]) {
 	data_vec.push_back(shared_ptr<Data>(new HouseNumber(44842)));
 	data_vec.push_back(shared_ptr<Data>(new Age(21)));
 	showData(data_vec);
+	data_vec.clear(); 
 	holdCommandWindow();
 }
