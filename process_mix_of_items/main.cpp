@@ -1,7 +1,7 @@
 #include <iostream>
 #include <vector>
 #include <string>
-#include <memory>
+#include <tr1/memory>
 #include "PhoneExtension.h"
 #include "HouseNumber.h"
 #include "Age.h"
